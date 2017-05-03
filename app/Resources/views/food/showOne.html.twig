@@ -1,0 +1,40 @@
+{# extends layout #}
+{% extends 'base.html.twig' %}
+
+{% block title %}
+    my Food: {{ name }}
+{% endblock %}
+
+{# take out 'body' block from the layout and change it like below. #}
+{%  block body %}
+<h2>I am the body block</h2>
+<p>With Block in twig template, you can inherit from or override stylesheets and scripts in the block. </p>
+<h1>The Food: {{ name }}</h1>
+
+You can see every variables available here with dump() function.
+{{ dump() }}
+
+You can take out each item of an array using 'for ... in ...'
+<ul>
+    {% for food in foodList %}
+
+     <li>{{  food  }}</li>
+
+    {% endfor %}
+</ul>
+
+    {#just an example of genrating url effectively. #}
+    {#path - first argument is the name specified in the route. second object is - key is the wildcard in the route, and value is the variable came passing through to twig.#}
+    <a href="{{ path('food_show_notes', { 'foodName': name }) }}">Json Notes</a>
+
+
+{% endblock %}
+
+{% block javascripts %}
+    {#  Tbe below parent() will keep the scripts in the original block.  #}
+    {{  parent()  }}
+
+    {#   Below is the script specific to this page.   #}
+    <script src="{{ asset('js/additional.js') }}"></script>
+
+{% endblock %}
