@@ -7,26 +7,47 @@
 
 {# take out 'body' block from the layout and change it like below. #}
 {%  block body %}
-<h2>I am the body block</h2>
-<p>With Block in twig template, you can inherit from or override stylesheets and scripts in the block. </p>
-<h1>The Food: {{ name }}</h1>
+    <h2>I am the body block</h2>
+    <p>With Block in twig template, you can inherit from or override stylesheets and scripts in the block. </p>
+    <h1>The Food: {{ name }}</h1>
 
-You can see every variables available here with dump() function.
-{{ dump() }}
+    You can see every variables available here with dump() function.
+    {{ dump() }}
 
-You can take out each item of an array using 'for ... in ...'
-<ul>
-    {% for food in foodList %}
+    <h3>Number formatting in twig</h3>
+    <p>{{  '1230000'|number_format }}</p>
 
-     <li>{{  food  }}</li>
+    You can take out each item of an array using 'for ... in ...'
+    <ul>
+        {% for food in foodList %}
+          <li>{{  food | raw }}</li>
 
-    {% endfor %}
-</ul>
+        {% endfor %}
+    </ul>
 
     {#just an example of genrating url effectively. #}
     {#path - first argument is the name specified in the route. second object is - key is the wildcard in the route, and value is the variable came passing through to twig.#}
     <a href="{{ path('food_show_notes', { 'foodName': name }) }}">Json Notes</a>
 
+    <h2>How to make an entity using Doctrine</h2>
+    <ul>
+        <li>Create a folder called Entity under AppBundle in src folder.</li>
+        <li>Create a PHP class.  Make sure that namespace is AppBundle\Entity</li>
+        <li>Inside class { }, right-click and select Generate (PHP storm)</li>
+        <li>Select ORM Class.  It will create two annotations.
+            /**
+            * @ORM\Entity
+            * @ORM\Table(name="food")
+            */
+        </li>
+        <li>Create private $id and private $name (for example) inside the class</li>
+        <li>Click one of them and Gnenerate again. Select ORM annotation.</li>
+        <li>Then, select both id and name.  It will generate annotation for both of them.</li>
+        <li>Create database if you haven't yet by bin/console doctrine:database:create</li>
+        <li>To create the table, bin/console doctrine:schema update --force
+            (if you just want to check before you force, you do --dump-sql</li>
+    </ul>
+    </ul>
 
 {% endblock %}
 

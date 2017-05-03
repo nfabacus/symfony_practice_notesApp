@@ -4,6 +4,7 @@
 namespace AppBundle\Controller;
 
 
+use AppBundle\Entity\Food;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Method;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
@@ -22,6 +23,20 @@ class foodController extends Controller
         return new Response('Hello, World!');
     }
 
+    /**
+     * @Route("/food/new")
+     */
+    public function newAction(){
+        $food = new Food();
+        $food->setName('Sundae'.rand(1, 100));
+
+        //$em is entity manager.
+        $em = $this->getDoctrine()->getManager();
+        $em->persist($food); //This tells doctrine that I want to save this.
+        $em->flush(); //This will run the query.
+
+        return new Response('<html><body>Food created!</body></html>');
+    }
 
     /**
      * @Route("/food/{foodName}")
@@ -34,9 +49,11 @@ class foodController extends Controller
 //        ]);
 //        return new Response($html);
 
+        $myMarkdown = '*Sushi*';
+        $myMarkdown = $this->get('markdown.parser')->transform($myMarkdown);
 
         $foodList = [
-            'Sushi',
+            $myMarkdown,
             'Orange',
             'Strawberry cake',
             'Carrot',
