@@ -87,6 +87,16 @@ class foodController extends Controller
 //        ]);
 //        return new Response($html);
 
+        //Find an item in table like this...
+        $em = $this->getDoctrine()->getManager();
+        $food = $em->getRepository('AppBundle:Food')
+            ->findOneBy(['name' => $foodName]);
+
+        if(!$food) {
+            //If matching item is not found. Show this message... 404 page needs to be created.
+            throw $this->createNotFoundException(('No food found.'));
+        }
+
         $myMarkdown = '*Sushi*';
         $myMarkdown = $this->get('markdown.parser')->transform($myMarkdown);
 
@@ -100,7 +110,7 @@ class foodController extends Controller
 
         // You can pass strings, array to twig like below.
         return $this->render('food/showOne.html.twig', [
-            'name' => $foodName,
+            'food' => $food,
             'foodList' => $foodList
         ]);
     }

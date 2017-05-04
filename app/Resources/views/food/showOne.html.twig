@@ -2,32 +2,40 @@
 {% extends 'base.html.twig' %}
 
 {% block title %}
-    my Food: {{ name }}
+    my Food: {{ food.name }}
 {% endblock %}
 
 {# take out 'body' block from the layout and change it like below. #}
 {%  block body %}
     <h2>I am the body block</h2>
     <p>With Block in twig template, you can inherit from or override stylesheets and scripts in the block. </p>
-    <h1>The Food: {{ name }}</h1>
 
     You can see every variables available here with dump() function.
     {{ dump() }}
+
+    <h1>The Food: {{ food.name }}</h1>
+    <ul>
+        <li>category: {{ food.category }}</li>
+        <li>Popularity Count: {{ food.popularityCount }}</li>
+        <li>Published?: {{ food.isPublished }}</li>
+        <li>Type: {{ food.type }}</li>
+        <li>Published On: {{ food.publishedOn|date('Y-m-d') }}</li>
+    </ul>
 
     <h3>Number formatting in twig</h3>
     <p>{{  '1230000'|number_format }}</p>
 
     You can take out each item of an array using 'for ... in ...'
     <ul>
-        {% for food in foodList %}
-          <li>{{  food | raw }}</li>
+        {% for dish in foodList %}
+          <li>{{  dish | raw }}</li>
 
         {% endfor %}
     </ul>
 
     {#just an example of genrating url effectively. #}
     {#path - first argument is the name specified in the route. second object is - key is the wildcard in the route, and value is the variable came passing through to twig.#}
-    <a href="{{ path('food_show_notes', { 'foodName': name }) }}">Json Notes</a>
+    <a href="{{ path('food_show_notes', { 'foodName': food.name }) }}">Json Notes</a>
 
     <h2>How to make an entity using Doctrine</h2>
     <ul>

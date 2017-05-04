@@ -6,6 +6,8 @@
 
 namespace AppBundle\Form;
 
+use Symfony\Component\Form\Extension\Core\Type\ChoiceType;
+use Symfony\Component\Form\Extension\Core\Type\DateTimeType;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
@@ -19,7 +21,11 @@ class FoodFormType extends AbstractType
             ->add('name')
             ->add('category')
             ->add('popularityCount')
-            ->add('description');
+            ->add('description')
+            ->add('isPublished')
+            ->add('type')
+            ->add('publishedOn')
+            ));
     }
 
     public function configureOptions(OptionsResolver $resolver)

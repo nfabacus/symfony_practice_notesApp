@@ -10,7 +10,10 @@
                 <th>Category</th>
                 <th>Popularity Count</th>
                 <th>Description</th>
-                <th>Last Updated</th>
+                <th>Type</th>
+                <th>Is published?</th>
+                <th>Published Date</th>
+                <th>Updated on</th>
             </tr>
         </thead>
         <tbody>
@@ -21,6 +24,11 @@
                <td>{{ food.category }} </td>
                <td>{{ food.popularityCount }} </td>
                <td>{{ food.description }} </td>
+               <td>{{ food.type }} </td>
+               <td>{{ food.isPublished }} </td>
+               <td>{{ food.publishedOn|date("m/d/Y") }} </td>
+               <td>{{ food.updatedAt|date('Y-m-d') }}</td>
+
                {#<td>{{ food.updatedAt|date('Y-m-d') }}</td>#}
             </tr>
         {% endfor %}

@@ -43,6 +43,72 @@ class Food
      */
     private $description;
 
+    /**
+     * @ORM\Column(type="boolean", nullable=true)
+     */
+    private $isPublished;
+
+    /**
+     * @ORM\Column(type="string", nullable=true)
+     */
+    private $type;
+
+    /**
+     * @ORM\Column(type="datetime", nullable=true)
+     */
+    private $publishedOn;
+
+
+
+    /**
+     * @return mixed
+     */
+    public function getIsPublished()
+    {
+        return $this->isPublished;
+    }
+
+    /**
+     * @param mixed $isPublished
+     */
+    public function setIsPublished($isPublished)
+    {
+        $this->isPublished = $isPublished;
+    }
+
+    /**
+     * @return mixed
+     */
+    public function getType()
+    {
+        return $this->type;
+    }
+
+    /**
+     * @param mixed $type
+     */
+    public function setType($type)
+    {
+        $this->type = $type;
+    }
+
+    /**
+     * @return mixed
+     */
+    public function getPublishedOn()
+    {
+        return $this->publishedOn;
+    }
+
+    /**
+     * @param mixed $publishedOn
+     */
+    public function setPublishedOn($publishedOn)
+    {
+        $this->publishedOn = $publishedOn;
+    }
+
+
 //nullable=true will allow user not to input anything.
 
     /**
@@ -109,10 +175,10 @@ class Food
         $this->description = $description;
     }
 
-//    public function getUpdatedAt()
-//    {
-//        return new \DateTime('-'.rand(0,100),'days');
-//    }
+    public function getUpdatedAt()
+    {
+        return new \DateTime('-'.rand(0,100).'days');
+    }
     // $name is a private name property, so we need to create a getter and setter function.
     // Right click, Generate, Getters and Setters. Select $name. above { $this->name = $name } should be created.
     // See how to save/get the data using setName/getName in foodController.php.
