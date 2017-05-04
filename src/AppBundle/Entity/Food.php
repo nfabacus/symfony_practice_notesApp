@@ -11,7 +11,7 @@ namespace AppBundle\Entity;
 use Doctrine\ORM\Mapping as ORM; //You need to have this for every entity class you make - needed for mapping
 
 /**
- * @ORM\Entity(repositoryClass="FoodRepository")
+ * @ORM\Entity(repositoryClass="AppBundle\Repository\FoodRepository")
  * @ORM\Table(name="food")
  */
 class Food

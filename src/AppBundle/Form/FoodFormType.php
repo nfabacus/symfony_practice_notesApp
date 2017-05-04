@@ -24,8 +24,7 @@ class FoodFormType extends AbstractType
             ->add('description')
             ->add('isPublished')
             ->add('type')
-            ->add('publishedOn')
-            ));
+            ->add('publishedOn');
     }
 
     public function configureOptions(OptionsResolver $resolver)

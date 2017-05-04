@@ -26,7 +26,8 @@ class foodController extends Controller
     {
        $em = $this->getDoctrine()->getManager();
        $foodList = $em->getRepository('AppBundle:Food')  //or 'AppBundle\Entity\Food' - the same thing for getting the entity.
-           ->findAll();
+//           ->findAll();
+             ->findAllPublishedOrderBySize();  //custom query ccreated with FoodRepository.php under Repository folder.
 
        return $this->render('food/list.html.twig', [
            'foodList' => $foodList
