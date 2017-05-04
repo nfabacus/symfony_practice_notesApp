@@ -5,9 +5,11 @@ namespace AppBundle\Controller;
 
 
 use AppBundle\Entity\Food;
+use AppBundle\Form\FoodFormType;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Method;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
+use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\JsonResponse;
 use Symfony\Component\HttpFoundation\Response;
 
@@ -15,33 +17,69 @@ use Symfony\Component\HttpFoundation\Response;
 class foodController extends Controller
 {
 
+
+
     /**
-     * @Route("/food")
+     * @Route("/food", name="show_list")
      */
-    public function showAction()
+    public function listAction()
     {
-        return new Response('Hello, World!');
+       $em = $this->getDoctrine()->getManager();
+       $foodList = $em->getRepository('AppBundle:Food')  //or 'AppBundle\Entity\Food' - the same thing for getting the entity.
+           ->findAll();
+
+       return $this->render('food/list.html.twig', [
+           'foodList' => $foodList
+       ]);
     }
 
     /**
-     * @Route("/food/new")
+     * @Route("/food/new", name="food_new")
      */
-    public function newAction(){
-        $food = new Food();
-        $food->setName('Sundae'.rand(1, 100));
+    public function newAction(Request $request){     //This single action method is responsible for both rendering the form and processing inputs.
 
-        //$em is entity manager.
-        $em = $this->getDoctrine()->getManager();
-        $em->persist($food); //This tells doctrine that I want to save this.
-        $em->flush(); //This will run the query.
+        $form = $this->createForm(FoodFormType::class);  //Make sure to add use statement for the FoodFormType on the top.
 
-        return new Response('<html><body>Food created!</body></html>');
+        $form->handleRequest($request);  //This handles data only on POST.
+
+        if ($form->isSubmitted() && $form->isValid()) {
+            $food = $form->getData();
+            $em = $this->getDoctrine()->getManager();
+            $em->persist($food);
+            $em->flush();
+
+            $this->addFlash('success', 'Food added - Excellent!');  //You can set flash message with the key 'success'.
+            //Then, you can add the message anywhere in twig templates.  base.html.twig may be a good place.
+
+            return $this->redirectToRoute('show_list');  //redirect to the list view (name) url.
+        }
+
+        return $this->render('food/new.html.twig', [  //add twig template for the form.
+            'foodForm' => $form->createView()   //pass the form as a variable 'foodForm' to the twig template here.
+        ]);
+
+//        Make sure to make the template
+
+//        $food = new Food();
+//        $food->setName('Sundae'.rand(1, 100));
+//        $food->setCategory('Western food');
+//        $food->setPopularityCount(rand(10, 300));
+////        $food->setDescription('Delicious food...');  ////you need to make description nullable if you do not always enter the value.
+//
+//        //$em is entity manager.
+//        $em = $this->getDoctrine()->getManager();
+//        $em->persist($food); //This tells doctrine that I want to save this.
+//        $em->flush(); //This will run the query.
+//
+//        return new Response('<html><body>Food created!</body></html>');
     }
 
+
+
     /**
-     * @Route("/food/{foodName}")
+     * @Route("/food/{foodName}", name="food_show")
      */
-    public function showOneAction($foodName)
+    public function showAction($foodName)
     {
 //        $templating = $this->container->get('templating');
 //        $html = $templating->render('food/showOne.html.twig', [

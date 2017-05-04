@@ -3,7 +3,8 @@ app:
     type: annotation
 
 homeage:  # name/key of the route
-  path: /     # url for this route
+  path: /homepage     # url for this route
   defaults:
     _controller: AppBundle:Main:homepage    # This indicates which controller to use and its location - AppBundle\Controller\MainController::homepageAction
+
 

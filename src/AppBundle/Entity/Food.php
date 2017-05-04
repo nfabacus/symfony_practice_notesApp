@@ -11,7 +11,7 @@ namespace AppBundle\Entity;
 use Doctrine\ORM\Mapping as ORM; //You need to have this for every entity class you make - needed for mapping
 
 /**
- * @ORM\Entity
+ * @ORM\Entity(repositoryClass="FoodRepository")
  * @ORM\Table(name="food")
  */
 class Food
@@ -34,17 +34,16 @@ class Food
     private $category;
 
     /**
-     * @ORM\Column(type="integer")
+     * @ORM\Column(type="integer", nullable=true)
      */
     private $popularityCount;
 
     /**
-     * @ORM\Column(type="string")
+     * @ORM\Column(type="string", nullable=true)
      */
     private $description;
 
-
-
+//nullable=true will allow user not to input anything.
 
     /**
      * @return mixed
@@ -109,6 +108,11 @@ class Food
     {
         $this->description = $description;
     }
+
+//    public function getUpdatedAt()
+//    {
+//        return new \DateTime('-'.rand(0,100),'days');
+//    }
     // $name is a private name property, so we need to create a getter and setter function.
     // Right click, Generate, Getters and Setters. Select $name. above { $this->name = $name } should be created.
     // See how to save/get the data using setName/getName in foodController.php.
@@ -116,6 +120,14 @@ class Food
     // When you add new columns, you need to do the following in the terminal.
     // bin/console doctrine:schema:update --force
     // BUT DON'T DO IT in Production!  It may erase data.
+    // Use doctrine/doctrine-migration-bundle.
+    // http://symfony.com/doc/current/bundles/DoctrineMigrationsBundle/index.html
+    // If it is not installed, do composer require doctrine/doctrine-migrations-bundle
+    // Make sure to add to the AppKernel.php
+    // Now you can just do
+    // bin/console doctrine:migrations:diff    to check.
+    // bin/console doctrine:migrations:migrate
+
 
 }
 

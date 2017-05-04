@@ -46,6 +46,17 @@
         <li>Create database if you haven't yet by bin/console doctrine:database:create</li>
         <li>To create the table, bin/console doctrine:schema update --force
             (if you just want to check before you force, you do --dump-sql</li>
+
+
+        // bin/console doctrine:schema:update --force
+        // BUT DON'T DO IT in Production!  It may erase data.
+        // Use doctrine/doctrine-migration-bundle.
+        // http://symfony.com/doc/current/bundles/DoctrineMigrationsBundle/index.html
+        // If it is not installed, do composer require doctrine/doctrine-migrations-bundle
+        // Make sure to add to the AppKernel.php
+        // Now you can just do
+        // bin/console doctrine:migrations:diff    and check the file.
+        // bin/console doctrine:migrations:migrate
     </ul>
     </ul>
 

@@ -1,0 +1,36 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+    <h1>Food List</h1>
+    <a href="{{ path('food_new') }}">Create new food.</a>
+    <table>
+        <thead>
+            <tr>
+                <th>Food name</th>
+                <th>Category</th>
+                <th>Popularity Count</th>
+                <th>Description</th>
+                <th>Last Updated</th>
+            </tr>
+        </thead>
+        <tbody>
+
+        {% for food in foodList %}
+           <tr>
+               <td><a href="{{  path('food_show', { 'foodName': food.name }) }}">{{ food.name }}</a></td>
+               <td>{{ food.category }} </td>
+               <td>{{ food.popularityCount }} </td>
+               <td>{{ food.description }} </td>
+               {#<td>{{ food.updatedAt|date('Y-m-d') }}</td>#}
+            </tr>
+        {% endfor %}
+
+        </tbody>
+    </table>
+
+    <div>
+        <p>dump(foodList)</p>
+        {{ dump(foodList) }}
+    </div>
+
+{%  endblock %}

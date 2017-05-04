@@ -1,0 +1,19 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+    <div class="container">
+        <div class="row">
+            <div class="col-xs-12">
+                <h1>Food</h1>
+
+                {{ form_start(foodForm) }}
+                    {{ form_widget(foodForm) }}
+
+                    <button type="submit" class="btn btn-primary">Save</button>
+
+                {{ form_end(foodForm) }}
+            </div>
+        </div>
+    </div>
+
+{% endblock %}
