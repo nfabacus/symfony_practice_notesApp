@@ -62,7 +62,7 @@ class LoadFixtures implements FixtureInterface
     public function avatorFilename()
     {
         $avatorUrl = [
-          'images/person1.jpg', 'images/person2.jpg', 'images/person3.jpg', 'images/person4.jpg'
+          'person1.jpg', 'person2.jpg', 'person3.jpg', 'person4.jpg'
         ];
         $key = array_rand($avatorUrl);
 

@@ -8,6 +8,7 @@
 
 namespace AppBundle\Entity;
 
+use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\ORM\Mapping as ORM; //You need to have this for every entity class you make - needed for mapping
 
 /**
@@ -59,7 +60,28 @@ class Food
      */
     private $publishedOn;
 
+    //mappedBy is pointing the property "food" in FoodNote entity.
+    //OrderBy the property descending order. Latest first.
+    /**
+     * @ORM\OneToMany(targetEntity="FoodNote", mappedBy="food")
+     * @ORM\OrderBy({"CreatedAt"="DESC"})
+     */
+    private $notes;
 
+    //Create this to access array of notes
+    public function  __construct()
+    {
+        $this->notes = new ArrayCollection();
+    }
+
+    // This annotation is for auto-completion..
+    /**
+     * @return ArrayCollection|FoodNote[]
+     */
+    public function getNotes()
+    {
+        return $this->notes;
+    }
 
     /**
      * @return mixed

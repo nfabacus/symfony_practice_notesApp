@@ -33,11 +33,12 @@
         {% endfor %}
     </ul>
 
+    <h2>Comments:</h2>
     <div id="comments"></div>
 
     {#just an example of genrating url effectively. #}
     {#path - first argument is the name specified in the route. second object is - key is the wildcard in the route, and value is the variable came passing through to twig.#}
-    <a href="{{ path('food_show_notes', { 'foodName': food.name }) }}">Json Notes</a>
+    <a href="{{ path('food_show_notes', { 'name': food.name }) }}">Json Notes</a>
 
     <h2>How to make an entity using Doctrine</h2>
     <ul>
@@ -122,13 +123,13 @@
 
     </ul>
 
-    <h2>Setting up Database relationship(many to one)</h2>
+    <h2>Setting up Database relationship(many to one - owning side - Required)</h2>
     <ul>
         <li>Go to the entity for many (e.g. FoodNote.php).</li>
         <li>Add a property for one (eg. private $food).</li>
         <li>Give manyToOne annotation to the property with the target inside it.
             /**
-            * @ORM\ManyToOne(targetEntity="Food")
+            * @ORM\ManyToOne(targetEntity="Food", inversedBy="notes")
             */
         </li>
         <li>Generate getter and setter for it.</li>
@@ -138,7 +139,7 @@
             eg, in newAction() in food Controller,
             $foodNote = new FoodNote();
             $foodNote->setUsername('Bob');
-            $foodNote->setUserAvatorFilename('image/person1.jpg');
+            $foodNote->setUserAvatorFilename('person1.jpg');
             $foodNote->setNote('This food is soo good! You should try it.');
             $foodNote->setCreatedAt(new \DateTime('-1month'));
         </li>
@@ -152,6 +153,36 @@
                 <li>bin/console doctrine:query:sql 'SELECT * FROM food_note'</li>
             </ul>
         </li>
+        <li>Setting up one to many (inverse side - optional)
+            <ul>
+                <li>In Food.php, create notes property.
+                    //mappedBy is pointing the property "food" in FoodNote entity.
+                    /**
+                    * @ORM\OneToMany(targetEntity="FoodNote", mappedBy="food")
+                    */
+                    private $notes;
+                </li>
+                <li>Still in Food.php, create this construct method to access array of notes
+                    public function  __construct()
+                    {
+                    $this->notes = new ArrayCollection();
+                    }</li>
+                <li>Finally, create a getter for the notes property which we created above.
+                    /**
+                    * @return ArrayCollection|FoodNote[]   //this is for auto-completion.
+                    */
+                    public function getNotes()
+                    {
+                    return $this->notes;
+                    }
+                </li>
+                <li>Important: you can only create a getter but not a setter for other entities.</li>
+                <li>Then, in the controller (e.g. getNotesAction(Food $food), you can use $food->getNotes().</li>
+                <li>Check getNotesActions in foodController for reference on how to extract data from there.</li>
+                <li>You can order it by date (Created at) like below:
+                </li>
+            </ul>
+        </li>
     </ul>
 
 
@@ -163,6 +194,9 @@
     {{  parent()  }}
 
     {#   Below is the script specific to this page.   #}
+    <script>
+        var notesUrl = '{{ path('food_show_notes', { 'name': food.name }) }}';
+    </script>
     <script src="{{ asset('js/additional.js') }}"></script>
 
 {% endblock %}

@@ -40,13 +40,13 @@ class FoodNote
 
     /**
      * @ORM\Column(type="datetime")
-     * @ORM\JoinColumn(nullable=false)
      */
     private $createdAt;
 
 
     /**
-     * @ORM\ManyToOne(targetEntity="Food")
+     * @ORM\ManyToOne(targetEntity="Food", inversedBy="notes")
+     * @ORM\JoinColumn(nullable=false)
      */
     private $food;
 
@@ -58,9 +58,9 @@ class FoodNote
         return $this->food;
     }
 
+    //Pass entire Food object - setFood(Food $food) as below.
     /**
      * @param mixed $food
-     * Pass entire Food object - setFood(Food $food) as below.
      */
     public function setFood(Food $food)
     {

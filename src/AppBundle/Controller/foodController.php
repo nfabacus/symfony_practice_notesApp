@@ -126,22 +126,28 @@ class foodController extends Controller
         ]);
     }
 
-
+    //Here is the param conversion - pass property of an entity in route e.g. {name}
     /**
-     * @Route("/food/{foodName}/notes", name="food_show_notes")
+     * @Route("/food/{name}/notes", name="food_show_notes")
      * @Method("GET")
      */
-    public function getNotesAction()
+    // Now, we can pass the entity in the action() above.
+    public function getNotesAction(Food $food)
     {
+//        //This param conversion will do the same as below.
+//        $em = $this->getDoctrine()->getManager();
+//        $food = $em->getRepository('AppBundle:Food')
 
-        $notes = [
-            ['id' => 1, 'username' => 'John', 'avatorUri' => '/images/person1.jpg', 'note' => 'Nice food!'],
-            ['id' => 2, 'username' => 'Isla', 'avatorUri' => '/images/person2.jpg', 'note' => 'Awesome dish'],
-            ['id' => 3, 'username' => 'Bob', 'avatorUri' => '/images/person3.jpg', 'note' => 'I disagree.'],
-            ['id' => 4, 'username' => 'Kate', 'avatorUri' => '/images/person1.jpg', 'note' => 'OK food..'],
-            ['id' => 5, 'username' => 'Isla', 'avatorUri' => '/images/person2.jpg', 'note' => 'Yes'],
-            ['id' => 6, 'username' => 'Oliver', 'avatorUri' => '/images/person4.jpg', 'note' => 'Salty']
-        ];
+        $notes =[];
+        foreach ($food->getNotes() as $note){
+            $notes[] = [
+                'id' => $note->getId(),
+                'username' => $note->getUsername(),
+                'avatorUri' => $note->getUserAvatorFilename(),
+                'note' => $note->getNote(),
+                'date' => $note->getCreatedAt()->format('M d, Y')
+            ];
+        };
 
         //label the whole array as notes
         $data = [
