@@ -144,8 +144,16 @@
         </li>
         <li>$foodNote->setFood($food);  //Make sure to pass the entire parent object.</li>
         <li>$em->persist($foodNote); //Don't forget to persist the data.</li>
-
+        <li>To Join column
+            <ul>
+                <li>To join column, add @ORM\JoinColumn(nullable=false) in the child entity.(e.g.FoodNote)</li>
+                <li>Update the database by migration</li>
+                <li>For dummy data, add to Fixtures.yml file e.g. food: '@food_*' in child entity ficture.</li>
+                <li>bin/console doctrine:query:sql 'SELECT * FROM food_note'</li>
+            </ul>
+        </li>
     </ul>
+
 
 
 {% endblock %}

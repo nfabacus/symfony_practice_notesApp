@@ -9,6 +9,7 @@ AppBundle\Entity\Food:
     description: <sentence()>
     isPublished: <boolean(75)>  #Here parameter 75 means set 75% chance for true.
     type: <sentence()>
+    publishedOn: <dateTimeBetween('-6 months', 'now')>
 
 AppBundle\Entity\FoodNote:
   food.note{1..100}:
@@ -16,5 +17,5 @@ AppBundle\Entity\FoodNote:
     userAvatorFilename: <avatorFilename()>
     note: <paragraph()>
     createdAt: <dateTimeBetween('-6 months', 'now')>
-
+    food: '@food_*'
 
