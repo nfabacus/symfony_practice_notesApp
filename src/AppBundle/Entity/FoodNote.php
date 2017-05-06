@@ -40,6 +40,7 @@ class FoodNote
 
     /**
      * @ORM\Column(type="datetime")
+     * @ORM\JoinColumn(nullable=false)
      */
     private $createdAt;
 

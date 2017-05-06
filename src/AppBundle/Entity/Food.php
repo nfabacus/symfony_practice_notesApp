@@ -34,28 +34,28 @@ class Food
     private $category;
 
     /**
-     * @ORM\Column(type="integer", nullable=true)
+     * @ORM\Column(type="integer")
      */
     private $popularityCount;
 
     /**
-     * @ORM\Column(type="string", nullable=true)
+     * @ORM\Column(type="string")
      */
     private $description;
 
     /**
-     * @ORM\Column(type="boolean", nullable=true)
+     * @ORM\Column(type="boolean")
      * Below $isPublished = true will make the default value true.
      */
     private $isPublished = true;
 
     /**
-     * @ORM\Column(type="string", nullable=true)
+     * @ORM\Column(type="string")
      */
     private $type;
 
     /**
-     * @ORM\Column(type="datetime", nullable=true)
+     * @ORM\Column(type="datetime")
      */
     private $publishedOn;
 
