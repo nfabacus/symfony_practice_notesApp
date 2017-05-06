@@ -5,6 +5,7 @@ namespace AppBundle\Controller;
 
 
 use AppBundle\Entity\Food;
+use AppBundle\Entity\FoodNote;
 use AppBundle\Form\FoodFormType;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Method;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
@@ -26,8 +27,8 @@ class foodController extends Controller
     {
        $em = $this->getDoctrine()->getManager();
        $foodList = $em->getRepository('AppBundle:Food')  //or 'AppBundle\Entity\Food' - the same thing for getting the entity.
-//           ->findAll();
-             ->findAllPublishedOrderBySize();  //custom query ccreated with FoodRepository.php under Repository folder.
+           ->findAll();
+//             ->findAllPublishedOrderBySize();  //custom query ccreated with FoodRepository.php under Repository folder.
 
        return $this->render('food/list.html.twig', [
            'foodList' => $foodList
@@ -45,8 +46,17 @@ class foodController extends Controller
 
         if ($form->isSubmitted() && $form->isValid()) {
             $food = $form->getData();
+
+            $foodNote = new FoodNote();
+            $foodNote->setUsername('Bob');
+            $foodNote->setUserAvatorFilename('image/person1.jpg');
+            $foodNote->setNote('This food is soo good! You should try it.');
+            $foodNote->setCreatedAt(new \DateTime('-1month'));
+            $foodNote->setFood($food);   //Pass the parent entity here.
+
             $em = $this->getDoctrine()->getManager();
-            $em->persist($food);
+            $em->persist($food);  //Don't forget to persist!
+            $em->persist($foodNote);  //Don't forget to persist!
             $em->flush();
 
             $this->addFlash('success', 'Food added - Excellent!');  //You can set flash message with the key 'success'.
@@ -125,12 +135,12 @@ class foodController extends Controller
     {
 
         $notes = [
-            ['id' => 1, 'username' => 'John', 'avatorUri' => '/images/person1.jpg', 'notes' => 'Nice food!'],
-            ['id' => 2, 'username' => 'Isla', 'avatorUri' => '/images/person2.jpg', 'notes' => 'Awesome dish'],
-            ['id' => 3, 'username' => 'Bob', 'avatorUri' => '/images/person3.jpg', 'notes' => 'I disagree.'],
-            ['id' => 4, 'username' => 'Kate', 'avatorUri' => '/images/person1.jpg', 'notes' => 'OK food..'],
-            ['id' => 5, 'username' => 'Oliver', 'avatorUri' => '/images/person2.jpg', 'notes' => 'Yes'],
-            ['id' => 6, 'username' => 'Isla', 'avatorUri' => '/images/person4.jpg', 'notes' => 'Salty']
+            ['id' => 1, 'username' => 'John', 'avatorUri' => '/images/person1.jpg', 'note' => 'Nice food!'],
+            ['id' => 2, 'username' => 'Isla', 'avatorUri' => '/images/person2.jpg', 'note' => 'Awesome dish'],
+            ['id' => 3, 'username' => 'Bob', 'avatorUri' => '/images/person3.jpg', 'note' => 'I disagree.'],
+            ['id' => 4, 'username' => 'Kate', 'avatorUri' => '/images/person1.jpg', 'note' => 'OK food..'],
+            ['id' => 5, 'username' => 'Isla', 'avatorUri' => '/images/person2.jpg', 'note' => 'Yes'],
+            ['id' => 6, 'username' => 'Oliver', 'avatorUri' => '/images/person4.jpg', 'note' => 'Salty']
         ];
 
         //label the whole array as notes

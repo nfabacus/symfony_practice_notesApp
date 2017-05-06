@@ -45,8 +45,9 @@ class Food
 
     /**
      * @ORM\Column(type="boolean", nullable=true)
+     * Below $isPublished = true will make the default value true.
      */
-    private $isPublished;
+    private $isPublished = true;
 
     /**
      * @ORM\Column(type="string", nullable=true)

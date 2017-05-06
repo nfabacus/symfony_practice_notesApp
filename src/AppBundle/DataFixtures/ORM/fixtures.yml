@@ -1,0 +1,20 @@
+# Make sure to run doctrine every time you change this file.
+# bin/console doctrine:fixtures:load
+
+AppBundle\Entity\Food:
+  food_{1..20}:      #Here you can select how many dummy data you want.
+    name: <food()>
+    category: <text(20)>
+    popularityCount: <numberBetween(100, 100000)>
+    description: <sentence()>
+    isPublished: <boolean(75)>  #Here parameter 75 means set 75% chance for true.
+    type: <sentence()>
+
+AppBundle\Entity\FoodNote:
+  food.note{1..100}:
+    username: <userName()>
+    userAvatorFilename: <avatorFilename()>
+    note: <paragraph()>
+    createdAt: <dateTimeBetween('-6 months', 'now')>
+
+

@@ -33,6 +33,8 @@
         {% endfor %}
     </ul>
 
+    <div id="comments"></div>
+
     {#just an example of genrating url effectively. #}
     {#path - first argument is the name specified in the route. second object is - key is the wildcard in the route, and value is the variable came passing through to twig.#}
     <a href="{{ path('food_show_notes', { 'foodName': food.name }) }}">Json Notes</a>
@@ -66,7 +68,85 @@
         // bin/console doctrine:migrations:diff    and check the file.
         // bin/console doctrine:migrations:migrate
     </ul>
+
+   <h2>Adding Fixtures: dummy data</h2>
+    <ul>
+        <li>Download the DoctrineFixturesBundle
+            from http://symfony.com/doc/current/bundles/DoctrineFixturesBundle/index.html
+            - just do: composer require --dev doctrine/doctrine-fixtures-bundle</li>
+        <li>Also, download this: composer require --dev doctrine/doctrine-fixtures-bundle nelmio/alice</li>
+        <li>Then, add the following line in the app/AppKernel.php file to enable this bundle only for the dev and test environments:
+            $bundles[] = new Doctrine\Bundle\FixturesBundle\DoctrineFixturesBundle();</li>
+        <li>copy the class below.
+            namespace AppBundle\DataFixtures\ORM;
+
+            use AppBundle\Entity\Food; //Don't forget to add your entity here.
+            use Doctrine\Common\DataFixtures\FixtureInterface;
+            use Doctrine\Common\Persistence\ObjectManager;
+
+            class LoadFixtures implements FixtureInterface
+            {
+            public function load(ObjectManager $manager)
+            {
+            //example below
+            $food = new Food();
+            $food->setName('dish'.rand(1, 100));
+            $food->setCategory('Western food');
+            $food->setPopularityCount(rand(10, 300));
+            $food->setDescription('Delicious food...');  ////you need to make description nullable if you do not always enter the value.
+
+
+            $manager->persist($food);  //make sure to put your variable inside () here.
+            $manager->flush();
+            }
+            }
+        </li>
+        <li>Create the php class under AppBundle (or your bundle): DataFixtures/ORM/LoadFixtures.php</li>
+        <li>Paste the above code in the file. Make sure to customise it inside, according to your needs.</li>
+        <li>In terminal, bin/console doctrine:fixtures:load.  *** Attention: this will clear your database, then will create a dummy data!! ***</li>
+        <li>Re alice, read https://github.com/nelmio/alice. Alice will help you create a lot of dummy data automatically.</li>
+        <li>Create a file called Fixtures.yml.</li>
+        <li>In the file, type below for example.
+            AppBundle\Entity\Food:
+            food_{1..10}:   #Here you can select how many dummy data you want.
+            name: <name()>
+            category: <text(20)>
+            popularityCount: <numberBetween(100, 100000)>
+            description: <sentence()>
+        </li>
+        <li>Rewrite LoadFixtures.php inside load clause with
+            Fixtures::load(__DIR__.'/fixtures.yml', $manager);
+            //Make sure to add on top, use Nelmio\Alice\Fixtures\Fixtures; </li>
+        <li>In terminal, bin/console doctrine:fixtures:load.  *** Attention: this will clear your database, then will create a dummy data!! ***</li>
+        <li>For custom Alice Faker function, for example, check fixtures.yml and LoadFixtures.php.</li>
+
     </ul>
+
+    <h2>Setting up Database relationship(many to one)</h2>
+    <ul>
+        <li>Go to the entity for many (e.g. FoodNote.php).</li>
+        <li>Add a property for one (eg. private $food).</li>
+        <li>Give manyToOne annotation to the property with the target inside it.
+            /**
+            * @ORM\ManyToOne(targetEntity="Food")
+            */
+        </li>
+        <li>Generate getter and setter for it.</li>
+        <li>Pass Parent entity into settter. (e.g. setFood(Food $food)</li>
+        <li>Do bin/console doctrine:migrations:diff and then :migrate</li>
+        <li>In controller, you can pass the child to the parent entity like this.
+            eg, in newAction() in food Controller,
+            $foodNote = new FoodNote();
+            $foodNote->setUsername('Bob');
+            $foodNote->setUserAvatorFilename('image/person1.jpg');
+            $foodNote->setNote('This food is soo good! You should try it.');
+            $foodNote->setCreatedAt(new \DateTime('-1month'));
+        </li>
+        <li>$foodNote->setFood($food);  //Make sure to pass the entire parent object.</li>
+        <li>$em->persist($foodNote); //Don't forget to persist the data.</li>
+
+    </ul>
+
 
 {% endblock %}
 
