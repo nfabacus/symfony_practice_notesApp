@@ -88,9 +88,9 @@ class foodController extends Controller
 
 
     /**
-     * @Route("/food/{foodName}", name="food_show")
+     * @Route("/food/{name}", name="food_show")
      */
-    public function showAction($foodName)
+    public function showAction($name)
     {
 //        $templating = $this->container->get('templating');
 //        $html = $templating->render('food/showOne.html.twig', [
@@ -101,7 +101,7 @@ class foodController extends Controller
         //Find an item in table like this...
         $em = $this->getDoctrine()->getManager();
         $food = $em->getRepository('AppBundle:Food')
-            ->findOneBy(['name' => $foodName]);
+            ->findOneBy(['name' => $name]);
 
         if(!$food) {
             //If matching item is not found. Show this message... 404 page needs to be created.
@@ -118,6 +118,7 @@ class foodController extends Controller
             'Carrot',
             'Yakitori'
         ];
+
 
         // You can pass strings, array to twig like below.
         return $this->render('food/showOne.html.twig', [
@@ -138,6 +139,7 @@ class foodController extends Controller
 //        $em = $this->getDoctrine()->getManager();
 //        $food = $em->getRepository('AppBundle:Food')
 
+
         $notes =[];
         foreach ($food->getNotes() as $note){
             $notes[] = [
@@ -156,5 +158,24 @@ class foodController extends Controller
 
         //return json object
           return new JsonResponse($data);
+    }
+
+    /**
+     * @Route("/food/{name}/showNotes")
+     * @Method("GET")
+     */
+    public function showNotesAction(Food $food)
+    {
+        $foodName = $food ->getName();
+        $recentNotes = $food->getNotes()
+            ->filter(function(FoodNote $note){
+                return $note->getCreatedAt() > new \DateTime('-3 months');
+            });
+
+
+        return $this->render('food/showNotes.html.twig', [
+            'name' => $foodName,
+            'recentNoteCount' => count($recentNotes)
+        ]);
     }
 }

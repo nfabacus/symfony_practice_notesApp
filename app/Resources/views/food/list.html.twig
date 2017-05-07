@@ -20,7 +20,7 @@
 
         {% for food in foodList %}
            <tr>
-               <td><a href="{{  path('food_show', { 'foodName': food.name }) }}">{{ food.name }}</a></td>
+               <td><a href="{{  path('food_show', { 'name': food.name }) }}">{{ food.name }}</a></td>
                <td>{{ food.category }} </td>
                <td>{{ food.popularityCount }} </td>
                <td>{{ food.description }} </td>

@@ -64,7 +64,6 @@ class Food
     //OrderBy the property descending order. Latest first.
     /**
      * @ORM\OneToMany(targetEntity="FoodNote", mappedBy="food")
-     * @ORM\OrderBy({"CreatedAt"="DESC"})
      */
     private $notes;
 
