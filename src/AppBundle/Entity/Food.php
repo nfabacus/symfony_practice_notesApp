@@ -56,7 +56,7 @@ class Food
     private $type;
 
     /**
-     * @ORM\Column(type="datetime")
+     * @ORM\Column(type="date")
      */
     private $publishedOn;
 

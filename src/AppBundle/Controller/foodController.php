@@ -49,7 +49,7 @@ class foodController extends Controller
 
             $foodNote = new FoodNote();
             $foodNote->setUsername('Bob');
-            $foodNote->setUserAvatorFilename('image/person1.jpg');
+            $foodNote->setUserAvatorFilename('person2.jpg');
             $foodNote->setNote('This food is soo good! You should try it.');
             $foodNote->setCreatedAt(new \DateTime('-1month'));
             $foodNote->setFood($food);   //Pass the parent entity here.
