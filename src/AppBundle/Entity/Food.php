@@ -11,6 +11,8 @@ namespace AppBundle\Entity;
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\ORM\Mapping as ORM; //You need to have this for every entity class you make - needed for mapping
 
+use Symfony\Component\Validator\Constraints as Assert; //Add this to add form validation.
+
 /**
  * @ORM\Entity(repositoryClass="AppBundle\Repository\FoodRepository")
  * @ORM\Table(name="food")
@@ -25,21 +27,26 @@ class Food
     private $id;
 
     /**
+     * @Assert\NotBlank()
      * @ORM\Column(type="string")
      */
     private $name;
 
     /**
+     * @Assert\NotBlank()
      * @ORM\Column(type="string")
      */
     private $category;
 
     /**
+     * @Assert\NotBlank()
+     * @Assert\Range(min=0, minMessage="Please do not input negative number...")
      * @ORM\Column(type="integer")
      */
     private $popularityCount;
 
     /**
+     * @Assert\NotBlank()
      * @ORM\Column(type="string")
      */
     private $description;
@@ -51,11 +58,13 @@ class Food
     private $isPublished = true;
 
     /**
+     * @Assert\NotBlank()
      * @ORM\Column(type="string")
      */
     private $type;
 
     /**
+     * @Assert\NotBlank()
      * @ORM\Column(type="date")
      */
     private $publishedOn;

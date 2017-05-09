@@ -9,6 +9,7 @@ namespace AppBundle\Form;
 use Symfony\Component\Form\Extension\Core\Type\DateType;
 use Symfony\Component\Form\Extension\Core\Type\ChoiceType;
 use Symfony\Component\Form\AbstractType;
+use Symfony\Component\Form\Extension\Core\Type\TextType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
 
@@ -18,12 +19,15 @@ class FoodFormType extends AbstractType
     {
         //add form fields here.
         $builder
-            ->add('name')
+            ->add('name', TextType::class, array(
+                'attr' => array('placeholder' => 'Please type in your name here.')
+            ))
             ->add('category')
             ->add('popularityCount')
             ->add('description')
             ->add('isPublished')
             ->add('type', ChoiceType::class, array(
+                'placeholder' => 'Select its type.',
                 'choices' => array(
                     'Type A' => 'Type A',
                     'Type B' => 'Type B',

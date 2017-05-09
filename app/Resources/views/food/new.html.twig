@@ -7,9 +7,47 @@
                 <h1>Food</h1>
 
                 {{ form_start(foodForm) }}
-                    {{ form_widget(foodForm) }}
+                    {#{{ form_widget(foodForm) }}#}
 
-                    <button type="submit" class="btn btn-primary">Save</button>
+                <div class="form-group">
+                    {# You can use form_row #}
+                    {{ form_row(foodForm.name) }}
+                </div>
+                <div class="form-group">
+                    {# Or separate them like this. #}
+                    {{ form_label(foodForm.category, 'Category') }}
+                    {{ form_widget(foodForm.category, {'attr': {'class': 'form-control'}}) }}
+                    {{ form_errors(foodForm.category) }}
+                </div>
+                <div class="form-group">
+                    {{ form_label(foodForm.popularityCount, 'Popularity Count') }}
+                    {{ form_widget(foodForm.popularityCount, {'attr': {'class': 'form-control'}}) }}
+                </div>
+                <div class="form-group">
+                    {{ form_label(foodForm.description, 'Description') }}
+                    {{ form_widget(foodForm.description, {'attr': {'class': 'form-control'}}) }}
+                </div>
+                <div class="form-group">
+                    {{ form_label(foodForm.isPublished, 'Published?') }}
+                    {{ form_widget(foodForm.isPublished) }}
+                </div>
+                <div class="form-group">
+                    {{ form_label(foodForm.type, 'Type') }}
+                    {{ form_widget(foodForm.type, {'attr': {'class': 'form-control'}}) }}
+                </div>
+                <div class="form-group">
+                    {{ form_label(foodForm.publishedOn, 'Published Date') }}
+                    {{ form_widget(foodForm.publishedOn) }}
+                </div>
+
+
+
+                    {# To disable client side validation by browser, just add 'formnovalidate'
+                    to the submit button  #}
+                    <button type="submit" class="btn btn-primary" formnovalidate>Save</button>
+
+                    {#For server-side validation, set it in Entity. #}
+                    {#Make sure to add this - use Symfony\Component\Validator\Constraints as Assert;#}
 
                 {{ form_end(foodForm) }}
             </div>
