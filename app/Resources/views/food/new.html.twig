@@ -18,22 +18,34 @@
                     {{ form_label(foodForm.category, 'Category') }}
                     {{ form_widget(foodForm.category, {'attr': {'class': 'form-control'}}) }}
                     {{ form_errors(foodForm.category) }}
+                    {# If you want to customise the error message,
+                        1. Go to app/config.yml, and uncomment translator
+                        2. Then, go to the form on the page.
+                            From there, under the page, find the errors for messages.
+                        3. Go to the error - copy one of the message preview.
+                        4. Create a folder called 'translations' under app/Resources
+                        5. Within the folder, create a file called 'validators.en.yml'
+                        6.  Inside the file, do e.g. "This value should not be blank.": "Hi, you have not entered anything in the field. Please enter it. =)"
+                        7. bin/console cache:clear
+                        8. Go to the page to check.
+
+                    #}
+
+
                 </div>
                 <div class="form-group">
                     {{ form_label(foodForm.popularityCount, 'Popularity Count') }}
                     {{ form_widget(foodForm.popularityCount, {'attr': {'class': 'form-control'}}) }}
                 </div>
                 <div class="form-group">
-                    {{ form_label(foodForm.description, 'Description') }}
-                    {{ form_widget(foodForm.description, {'attr': {'class': 'form-control'}}) }}
+                    {{ form_row(foodForm.description) }}
                 </div>
                 <div class="form-group">
                     {{ form_label(foodForm.isPublished, 'Published?') }}
                     {{ form_widget(foodForm.isPublished) }}
                 </div>
                 <div class="form-group">
-                    {{ form_label(foodForm.type, 'Type') }}
-                    {{ form_widget(foodForm.type, {'attr': {'class': 'form-control'}}) }}
+                    {{ form_row(foodForm.type) }}
                 </div>
                 <div class="form-group">
                     {{ form_label(foodForm.publishedOn, 'Published Date') }}
