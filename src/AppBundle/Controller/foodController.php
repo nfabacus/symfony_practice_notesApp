@@ -86,6 +86,45 @@ class foodController extends Controller
     }
 
 
+    /**
+     * @Route("/food/{id}/edit", name="food_edit")
+     */
+    public function editAction(Request $request, Food $food) //For eidit, pass the food object.
+    {
+
+        $form = $this->createForm(FoodFormType::class, $food);  //Pass the food object here.
+
+        $form->handleRequest($request);  //This handles data only on POST.
+
+        if ($form->isSubmitted() && $form->isValid()) {
+            $food = $form->getData();
+
+            $foodNote = new FoodNote();
+            $foodNote->setUsername('Bob');
+            $foodNote->setUserAvatorFilename('person2.jpg');
+            $foodNote->setNote('This food is soo good! You should try it.');
+            $foodNote->setCreatedAt(new \DateTime('-1month'));
+            $foodNote->setFood($food);   //Pass the parent entity here.
+
+            $em = $this->getDoctrine()->getManager();
+            $em->persist($food);  //Don't forget to persist!
+            $em->persist($foodNote);  //Don't forget to persist!
+            $em->flush();
+
+            $this->addFlash('success', 'Food updated - Excellent!');  //You can set flash message with the key 'success'.
+            //Then, you can add the message anywhere in twig templates.  base.html.twig may be a good place.
+
+            return $this->redirectToRoute('show_list');  //redirect to the list view (name) url.
+        }
+
+        return $this->render('food/edit.html.twig', [  //add twig template for the edit form.
+            'foodForm' => $form->createView()   //pass the form as a variable 'foodForm' to the twig template here.
+        ]);
+        // Make sure to make the template
+
+    }
+
+
 
     /**
      * @Route("/food/{name}", name="food_show")

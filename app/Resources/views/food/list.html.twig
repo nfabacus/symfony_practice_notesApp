@@ -28,6 +28,7 @@
                <td>{{ food.isPublished }} </td>
                <td>{{ food.publishedOn|date("m/d/Y") }} </td>
                <td>{{ food.updatedAt|date('Y-m-d') }}</td>
+               <td><a href="{{  path('food_edit', { 'id': food.id }) }}">Edit</td>
 
                {#<td>{{ food.updatedAt|date('Y-m-d') }}</td>#}
             </tr>

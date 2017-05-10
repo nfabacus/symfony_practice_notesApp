@@ -82,6 +82,15 @@ class Food
         $this->notes = new ArrayCollection();
     }
 
+
+    /**
+     * @return mixed
+     */
+    public function getId()
+    {
+        return $this->id;
+    }
+
     // This annotation is for auto-completion..
     /**
      * @return ArrayCollection|FoodNote[]
