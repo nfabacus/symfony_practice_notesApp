@@ -166,6 +166,18 @@ class foodController extends Controller
         ]);
     }
 
+    /**
+     * @Route("/food/{id}/delete", name="food_delete")
+     */
+    public function deleteAction($id)
+    {
+        $em = $this->getDoctrine()->getManager();
+        $food = $em->getRepository('AppBundle:Food')
+            ->find($id);
+        $em->remove($food);
+        $em->flush();
+    }
+
     //Here is the param conversion - pass property of an entity in route e.g. {name}
     /**
      * @Route("/food/{name}/notes", name="food_show_notes")

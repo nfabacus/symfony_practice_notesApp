@@ -2,10 +2,9 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="d573f525-48b9-4f0e-9080-5e56ae136ee9" name="Default" comment="">
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/app/Resources/views/food/_form.html.twig" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/Resources/views/food/edit.html.twig" afterPath="$PROJECT_DIR$/app/Resources/views/food/edit.html.twig" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/Resources/views/food/new.html.twig" afterPath="$PROJECT_DIR$/app/Resources/views/food/new.html.twig" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/Resources/views/food/list.html.twig" afterPath="$PROJECT_DIR$/app/Resources/views/food/list.html.twig" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/AppBundle/Controller/foodController.php" afterPath="$PROJECT_DIR$/src/AppBundle/Controller/foodController.php" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="TRACKING_ENABLED" value="true" />
@@ -22,15 +21,20 @@
     <favorites_list name="symfony_practice_notesApp" />
   </component>
   <component name="FileEditorManager">
-    <splitter split-orientation="horizontal" split-proportion="0.5403226">
+    <splitter split-orientation="horizontal" split-proportion="0.40155807">
       <split-first>
         <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-          <file leaf-file-name="new.html.twig" pinned="false" current-in-tab="true">
+          <file leaf-file-name="new.html.twig" pinned="false" current-in-tab="false">
             <entry file="file://$PROJECT_DIR$/app/Resources/views/food/new.html.twig">
               <provider selected="true" editor-type-id="text-editor">
                 <state relative-caret-position="210">
                   <caret line="14" column="14" lean-forward="true" selection-start-line="14" selection-start-column="14" selection-end-line="14" selection-end-column="14" />
-                  <folding />
+                  <folding>
+                    <marker date="1494503257000" expanded="true" signature="32:292" ph="{% block body ...%}" />
+                    <marker date="1494503257000" expanded="true" signature="75:275" ph="..." />
+                    <marker date="1494503257000" expanded="true" signature="101:264" ph="..." />
+                    <marker date="1494503257000" expanded="true" signature="137:249" ph="..." />
+                  </folding>
                 </state>
               </provider>
             </entry>
@@ -40,6 +44,16 @@
               <provider selected="true" editor-type-id="text-editor">
                 <state relative-caret-position="390">
                   <caret line="26" column="6" lean-forward="true" selection-start-line="26" selection-start-column="6" selection-end-line="26" selection-end-column="6" />
+                  <folding />
+                </state>
+              </provider>
+            </entry>
+          </file>
+          <file leaf-file-name="showNotes.html.twig" pinned="false" current-in-tab="false">
+            <entry file="file://$PROJECT_DIR$/app/Resources/views/food/showNotes.html.twig">
+              <provider selected="true" editor-type-id="text-editor">
+                <state relative-caret-position="60">
+                  <caret line="4" column="8" lean-forward="false" selection-start-line="4" selection-start-column="8" selection-end-line="4" selection-end-column="8" />
                   <folding />
                 </state>
               </provider>
@@ -75,11 +89,11 @@
               </provider>
             </entry>
           </file>
-          <file leaf-file-name="showOne.html.twig" pinned="false" current-in-tab="false">
+          <file leaf-file-name="showOne.html.twig" pinned="false" current-in-tab="true">
             <entry file="file://$PROJECT_DIR$/app/Resources/views/food/showOne.html.twig">
               <provider selected="true" editor-type-id="text-editor">
-                <state relative-caret-position="2805">
-                  <caret line="187" column="0" lean-forward="false" selection-start-line="187" selection-start-column="0" selection-end-line="187" selection-end-column="0" />
+                <state relative-caret-position="0">
+                  <caret line="64" column="0" lean-forward="false" selection-start-line="64" selection-start-column="0" selection-end-line="64" selection-end-column="0" />
                   <folding />
                 </state>
               </provider>
@@ -123,19 +137,22 @@
               </provider>
             </entry>
           </file>
-          <file leaf-file-name="foodController.php" pinned="false" current-in-tab="false">
+          <file leaf-file-name="foodController.php" pinned="false" current-in-tab="true">
             <entry file="file://$PROJECT_DIR$/src/AppBundle/Controller/foodController.php">
               <provider selected="true" editor-type-id="text-editor">
-                <state relative-caret-position="1770">
-                  <caret line="118" column="0" lean-forward="false" selection-start-line="118" selection-start-column="0" selection-end-line="118" selection-end-column="0" />
+                <state relative-caret-position="535">
+                  <caret line="179" column="0" lean-forward="true" selection-start-line="179" selection-start-column="0" selection-end-line="179" selection-end-column="0" />
                   <folding>
                     <element signature="e#42#68#0#PHP" expanded="true" />
+                    <element signature="e#686#702#1#PHP" expanded="true" />
+                    <element signature="e#5376#5392#1#PHP" expanded="true" />
+                    <element signature="e#6306#6322#1#PHP" expanded="true" />
                   </folding>
                 </state>
               </provider>
             </entry>
           </file>
-          <file leaf-file-name="edit.html.twig" pinned="false" current-in-tab="true">
+          <file leaf-file-name="edit.html.twig" pinned="false" current-in-tab="false">
             <entry file="file://$PROJECT_DIR$/app/Resources/views/food/edit.html.twig">
               <provider selected="true" editor-type-id="text-editor">
                 <state relative-caret-position="150">
@@ -148,8 +165,8 @@
           <file leaf-file-name="list.html.twig" pinned="false" current-in-tab="false">
             <entry file="file://$PROJECT_DIR$/app/Resources/views/food/list.html.twig">
               <provider selected="true" editor-type-id="text-editor">
-                <state relative-caret-position="165">
-                  <caret line="11" column="36" lean-forward="true" selection-start-line="11" selection-start-column="36" selection-end-line="11" selection-end-column="36" />
+                <state relative-caret-position="300">
+                  <caret line="20" column="34" lean-forward="true" selection-start-line="20" selection-start-column="34" selection-end-line="20" selection-end-column="34" />
                   <folding>
                     <element signature="e#94#102#0#Twig" expanded="false" />
                     <element signature="e#609#618#0#Twig" expanded="false" />
@@ -167,6 +184,7 @@
       <find>images</find>
       <find>getCreatedAt</find>
       <find>negative</find>
+      <find>findO</find>
     </findStrings>
   </component>
   <component name="Git.Settings">
@@ -197,12 +215,12 @@
         <option value="$PROJECT_DIR$/src/AppBundle/Form/FoodFormType.php" />
         <option value="$PROJECT_DIR$/app/config/config.yml" />
         <option value="$PROJECT_DIR$/app/Resources/translations/validators.en.yml" />
-        <option value="$PROJECT_DIR$/src/AppBundle/Controller/foodController.php" />
         <option value="$PROJECT_DIR$/src/AppBundle/Entity/Food.php" />
-        <option value="$PROJECT_DIR$/app/Resources/views/food/list.html.twig" />
         <option value="$PROJECT_DIR$/app/Resources/views/food/_form.html.twig" />
         <option value="$PROJECT_DIR$/app/Resources/views/food/edit.html.twig" />
         <option value="$PROJECT_DIR$/app/Resources/views/food/new.html.twig" />
+        <option value="$PROJECT_DIR$/app/Resources/views/food/list.html.twig" />
+        <option value="$PROJECT_DIR$/src/AppBundle/Controller/foodController.php" />
       </list>
     </option>
   </component>
@@ -214,9 +232,9 @@
   </component>
   <component name="PhpWorkspaceProjectConfiguration" backward_compatibility_performed="true" />
   <component name="ProjectFrameBounds">
-    <option name="x" value="-1703" />
-    <option name="y" value="-315" />
-    <option name="width" value="1556" />
+    <option name="x" value="-1778" />
+    <option name="y" value="-479" />
+    <option name="width" value="1965" />
     <option name="height" value="821" />
   </component>
   <component name="ProjectLevelVcsManager">
@@ -762,18 +780,18 @@
       <workItem from="1494401739085" duration="1798000" />
       <workItem from="1494411065774" duration="148000" />
       <workItem from="1494417347948" duration="1435000" />
-      <workItem from="1494502911910" duration="502000" />
+      <workItem from="1494502911910" duration="1890000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="123178000" />
+    <option name="totallyTimeSpent" value="124566000" />
   </component>
   <component name="ToolWindowManager">
-    <frame x="-1703" y="-315" width="1556" height="821" extended-state="0" />
+    <frame x="-1778" y="-479" width="1965" height="821" extended-state="0" />
     <editor active="true" />
     <layout>
-      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.2007926" sideWeight="0.49526066" order="0" side_tool="false" content_ui="combo" />
+      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.15808633" sideWeight="0.49526066" order="0" side_tool="false" content_ui="combo" />
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
       <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="true" content_ui="tabs" />
       <window_info id="Database" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
@@ -1016,13 +1034,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/app/Resources/views/food/showNotes.html.twig">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="60">
-          <caret line="4" column="8" lean-forward="false" selection-start-line="4" selection-start-column="8" selection-end-line="4" selection-end-column="8" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/README.md">
       <provider selected="true" editor-type-id="split-provider[text-editor;markdown-preview-editor]">
         <state split_layout="SPLIT">
@@ -1078,14 +1089,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/app/Resources/views/food/showOne.html.twig">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="2805">
-          <caret line="187" column="0" lean-forward="false" selection-start-line="187" selection-start-column="0" selection-end-line="187" selection-end-column="0" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/app/Resources/views/base.html.twig">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="75">
@@ -1104,16 +1107,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/AppBundle/Controller/foodController.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="1770">
-          <caret line="118" column="0" lean-forward="false" selection-start-line="118" selection-start-column="0" selection-end-line="118" selection-end-column="0" />
-          <folding>
-            <element signature="e#42#68#0#PHP" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/AppBundle/Entity/Food.php">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="450">
@@ -1124,13 +1117,15 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/app/Resources/views/food/list.html.twig">
+    <entry file="file://$PROJECT_DIR$/app/Resources/views/food/new.html.twig">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="165">
-          <caret line="11" column="36" lean-forward="true" selection-start-line="11" selection-start-column="36" selection-end-line="11" selection-end-column="36" />
+        <state relative-caret-position="210">
+          <caret line="14" column="14" lean-forward="true" selection-start-line="14" selection-start-column="14" selection-end-line="14" selection-end-column="14" />
           <folding>
-            <element signature="e#94#102#0#Twig" expanded="false" />
-            <element signature="e#609#618#0#Twig" expanded="false" />
+            <marker date="1494503257000" expanded="true" signature="32:292" ph="{% block body ...%}" />
+            <marker date="1494503257000" expanded="true" signature="75:275" ph="..." />
+            <marker date="1494503257000" expanded="true" signature="101:264" ph="..." />
+            <marker date="1494503257000" expanded="true" signature="137:249" ph="..." />
           </folding>
         </state>
       </provider>
@@ -1143,10 +1138,10 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/app/Resources/views/food/new.html.twig">
+    <entry file="file://$PROJECT_DIR$/app/Resources/views/food/showNotes.html.twig">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="210">
-          <caret line="14" column="14" lean-forward="true" selection-start-line="14" selection-start-column="14" selection-end-line="14" selection-end-column="14" />
+        <state relative-caret-position="60">
+          <caret line="4" column="8" lean-forward="false" selection-start-line="4" selection-start-column="8" selection-end-line="4" selection-end-column="8" />
           <folding />
         </state>
       </provider>
@@ -1156,6 +1151,38 @@
         <state relative-caret-position="150">
           <caret line="10" column="16" lean-forward="true" selection-start-line="10" selection-start-column="16" selection-end-line="10" selection-end-column="16" />
           <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/Resources/views/food/showOne.html.twig">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="0">
+          <caret line="64" column="0" lean-forward="false" selection-start-line="64" selection-start-column="0" selection-end-line="64" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/Resources/views/food/list.html.twig">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="300">
+          <caret line="20" column="34" lean-forward="true" selection-start-line="20" selection-start-column="34" selection-end-line="20" selection-end-column="34" />
+          <folding>
+            <element signature="e#94#102#0#Twig" expanded="false" />
+            <element signature="e#609#618#0#Twig" expanded="false" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/AppBundle/Controller/foodController.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="535">
+          <caret line="179" column="0" lean-forward="true" selection-start-line="179" selection-start-column="0" selection-end-line="179" selection-end-column="0" />
+          <folding>
+            <element signature="e#42#68#0#PHP" expanded="true" />
+            <element signature="e#686#702#1#PHP" expanded="true" />
+            <element signature="e#5376#5392#1#PHP" expanded="true" />
+            <element signature="e#6306#6322#1#PHP" expanded="true" />
+          </folding>
         </state>
       </provider>
     </entry>
