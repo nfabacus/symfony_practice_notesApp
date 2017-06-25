@@ -47,7 +47,7 @@ class Food
 
     /**
      * @Assert\NotBlank()
-     * @ORM\Column(type="string")
+     * @ORM\Column(type="text")
      */
     private $description;
 
@@ -80,6 +80,15 @@ class Food
     public function  __construct()
     {
         $this->notes = new ArrayCollection();
+    }
+
+
+    /**
+     * @return mixed
+     */
+    public function getId()
+    {
+        return $this->id;
     }
 
     // This annotation is for auto-completion..

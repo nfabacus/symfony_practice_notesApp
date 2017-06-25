@@ -1,0 +1,56 @@
+{{ form_start(foodForm) }}
+                    {#{{ form_widget(foodForm) }}#}
+
+<div class="form-group">
+    {# You can use form_row #}
+    {{ form_row(foodForm.name) }}
+</div>
+<div class="form-group">
+    {# Or separate them like this. #}
+    {{ form_label(foodForm.category, 'Category') }}
+    {{ form_widget(foodForm.category, {'attr': {'class': 'form-control'}}) }}
+    {{ form_errors(foodForm.category) }}
+    {# If you want to customise the error message,
+        1. Go to app/config.yml, and uncomment translator
+        2. Then, go to the form on the page.
+            From there, under the page, find the errors for messages.
+        3. Go to the error - copy one of the message preview.
+        4. Create a folder called 'translations' under app/Resources
+        5. Within the folder, create a file called 'validators.en.yml'
+        6.  Inside the file, do e.g. "This value should not be blank.": "Hi, you have not entered anything in the field. Please enter it. =)"
+        7. bin/console cache:clear
+        8. Go to the page to check.
+
+    #}
+
+
+</div>
+<div class="form-group">
+    {{ form_label(foodForm.popularityCount, 'Popularity Count') }}
+    {{ form_widget(foodForm.popularityCount, {'attr': {'class': 'form-control'}}) }}
+</div>
+<div class="form-group">
+    {{ form_row(foodForm.description) }}
+</div>
+<div class="form-group">
+    {{ form_label(foodForm.isPublished, 'Published?') }}
+    {{ form_widget(foodForm.isPublished) }}
+</div>
+<div class="form-group">
+    {{ form_row(foodForm.type) }}
+</div>
+<div class="form-group">
+    {{ form_label(foodForm.publishedOn, 'Published Date') }}
+    {{ form_widget(foodForm.publishedOn) }}
+</div>
+
+
+
+{# To disable client side validation by browser, just add 'formnovalidate'
+to the submit button  #}
+<button type="submit" class="btn btn-primary" formnovalidate>Save</button>
+
+{#For server-side validation, set it in Entity. #}
+                    {#Make sure to add this - use Symfony\Component\Validator\Constraints as Assert;#}
+
+                {{ form_end(foodForm) }}
